@@ -1,0 +1,25 @@
+baseURL = 'https://rgp-slc.antiprism.dev'
+languageCode = 'en-us'
+title = 'The Rio Grande Plan'
+copyright = "Via Rio Grande"
+
+defaultContentLanguage = "en"
+# sectionPagesMenu = "main"
+
+# [markup]
+#   [markup.goldmark]
+#     [markup.goldmark.renderer]
+#       unsafe = true
+
+[services.googleAnalytics]
+id = ''
+
+[cascade]
+featured_image = '/images/ground-render.png'
+
+[module]
+[[module.imports]]
+disable = false
+ignoreConfig = false
+ignoreImports = false
+path = 'github.com/gohugo-ananke/ananke/v2'

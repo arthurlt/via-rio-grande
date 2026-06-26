@@ -1,0 +1,23 @@
+text_color = "gray"
+site_logo = "images/logo.png"
+favicon = "images/favicon.png" # TODO: svg
+description = "Utah’s next big move"
+# custom_css = ["button.css"]
+
+[ananke]
+show_recent_posts = false
+
+[ananke.social.linkedin]
+username = "via-rio-grande"
+
+[ananke.social.youtube]
+username = "CSLenhart"
+
+[ananke.social.facebook]
+username = '61566364769715'
+
+[ananke.social.instagram]
+username = 'riograndeplan'
+
+[ananke.social.follow]
+networks = ["instagram", "youtube", "facebook", "linkedin"]

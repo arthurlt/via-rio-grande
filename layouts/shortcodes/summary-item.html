@@ -1,0 +1,9 @@
+<div class="w-100 w-25-l ph3 mb4">
+  <h3 class="ttu lh-title mb3 blue">
+    <span class="fw9">{{ .Get "title-accent" }}</span>
+    <span class="fw4">{{ .Get "title-main" }}</span>
+  </h3>
+  <div class="f6 f5-ns lh-copy">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
