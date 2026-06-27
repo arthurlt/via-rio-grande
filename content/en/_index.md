@@ -1,9 +1,9 @@
 +++
 title = "The Rio Grande Plan"
 description = "Utah's next big move"
-featured_image = '/images/aerial-render.png'
-header_accent="Rio Grande Plan"
-header_main="Overview"
+featured_image = "/images/aerial-render.png"
+header_accent = "Rio Grande Plan"
+header_main = "Overview"
 +++
 {{< feature-grid >}}
 

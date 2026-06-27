@@ -1,6 +1,6 @@
 +++
 title = "Opportunity"
-featured_image = 'opportunity.png'
+featured_image = "opportunity.png"
 [menus]
   [menus.main]
     parent = "About"
