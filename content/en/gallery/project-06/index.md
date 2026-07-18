@@ -1,5 +1,6 @@
 +++
 title = "Project 6: Jean-Claude Coomer & Sinikka Lee"
+description = "UVU architecture student work by Jean-Claude Coomer & Sinikka Lee imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 6
 students = "Jean-Claude Coomer & Sinikka Lee"
 

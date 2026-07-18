@@ -1,7 +1,7 @@
-text_color = "gray"
+text_color = "mid-gray"
 post_content_classes = "avenir"
 site_logo = "images/logo.webp"
-favicon = "images/favicon.png" # TODO: svg
+favicon = "images/favicon.png"
 description = "Utah’s next big move"
 
 [ananke]

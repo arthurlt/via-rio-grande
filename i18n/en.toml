@@ -3,3 +3,12 @@ other = "Shop"
 
 [donate]
 other = "Donate"
+
+[mainNav]
+other = "Main"
+
+[followOn]
+other = "follow on {{ . }} - Opens in a new window"
+
+[portraitOf]
+other = "Portrait of {{ . }}"

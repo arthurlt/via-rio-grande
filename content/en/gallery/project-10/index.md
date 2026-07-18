@@ -1,5 +1,6 @@
 +++
 title = "Project 10: Thomas Cryer & Jake Wendt"
+description = "UVU architecture student work by Thomas Cryer & Jake Wendt imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 10
 students = "Thomas Cryer & Jake Wendt"
 

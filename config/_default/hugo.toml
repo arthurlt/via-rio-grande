@@ -4,6 +4,7 @@ title = 'The Rio Grande Plan'
 copyright = "Via Rio Grande"
 
 defaultContentLanguage = "en"
+enableRobotsTXT = true
 # sectionPagesMenu = "main"
 
 # [markup]

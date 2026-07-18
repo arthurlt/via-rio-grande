@@ -1,16 +1,8 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
-<article class="w-100 ph3 ph5-ns pv5 center mw9 {{ $.Param "text_color" | default "mid-gray" }}">
-  <section class="w-100 w-75-l center">
-    {{ .Content }}
-
-    <div class="flex flex-wrap nl2 nr2 mt4">
-      {{ range (.RegularPages.ByWeight) }}
-        <div class="w-100 w-50-m w-third-l ph2 mb3">
-          {{ partial "gallery/project.html" (dict "page" . "showHeading" false "coverOnly" true) }}
-        </div>
-      {{ end }}
-    </div>
-  </section>
-</article>
+  {{ partial "site-content.html" (dict
+    "content" .Content
+    "text_color" ($.Param "text_color" | default "mid-gray")
+    "after" (partial "gallery/list-grid.html" .)
+  ) }}
 {{ end }}

@@ -1,5 +1,6 @@
 +++
 title = "Project 9: Nathaniel Stucki & Hailey Packard"
+description = "UVU architecture student work by Nathaniel Stucki & Hailey Packard imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 9
 students = "Nathaniel Stucki & Hailey Packard"
 

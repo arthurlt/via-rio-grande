@@ -1,5 +1,6 @@
 +++
 title = "Project 4: Colton Korpi & Eric Burton"
+description = "UVU architecture student work by Colton Korpi & Eric Burton imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 4
 students = "Colton Korpi & Eric Burton"
 

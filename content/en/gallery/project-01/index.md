@@ -1,5 +1,6 @@
 +++
 title = "Project 1: Barret Blake & Kevin Hart"
+description = "UVU architecture student work by Barret Blake & Kevin Hart imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 1
 students = "Barret Blake & Kevin Hart"
 

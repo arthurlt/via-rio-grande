@@ -1,5 +1,4 @@
-<article class="w-100 ph3 ph5-ns pv5 center mw9 {{ $.Param "text_color" | default "mid-gray" }}">
-  <section class="w-100 w-75-l center">
-    {{ .Content }}
-  </section>
-</article>
+{{ partial "site-content.html" (dict
+  "content" .Content
+  "text_color" ($.Param "text_color" | default "mid-gray")
+) }}

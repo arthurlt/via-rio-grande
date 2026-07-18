@@ -1,5 +1,12 @@
 /* Via Rio Grande — site polish on top of Ananke / Tachyons */
 
+/* Responsive images: width/height attrs reserve layout space; CSS must
+   override height so w-100 (width: 100%) does not skew aspect ratio. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Logo: constrain on small screens so the hero is not logo-dominated */
 header.cover nav img,
 header nav img {
@@ -45,6 +52,20 @@ header nav .ananke-socials {
   }
 }
 
+/* Language switcher: pin to top right of header on narrow screens */
+header nav[role="navigation"] {
+  position: relative;
+}
+
+@media screen and (max-width: 59.9375em) {
+  header nav .lang-switcher {
+    position: absolute;
+    top: 1rem;
+    inset-inline-end: 1rem;
+    margin: 0;
+  }
+}
+
 /* Focus visibility for keyboard users */
 a:focus-visible,
 button:focus-visible,
@@ -55,6 +76,93 @@ summary:focus-visible {
 
 header a:focus-visible {
   outline-color: #fff;
+}
+
+/* Prose measure: clamp reading text only; grids/embeds stay full column width.
+   Auto margins keep the reading column horizontally centered inside mw9.
+   rem (not em) so headings share the same column edge as body text. */
+.site-prose > :is(p, h2, h3, h4, ul, ol, blockquote),
+.site-prose > .mt3.mb4,
+.site-prose > .team-member {
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Team portraits: fixed small avatar beside bio */
+.team-member__photo {
+  width: 8rem;
+}
+
+.team-member__photo img {
+  width: 100%;
+}
+
+.site-prose > :is(h2, h3, h4) {
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.site-prose > h2:first-child,
+.site-prose > h3:first-child {
+  margin-top: 0;
+}
+
+.site-prose > :is(p, ul, ol, blockquote) {
+  line-height: 1.5;
+}
+
+.site-prose > p + p {
+  margin-top: 1.25em;
+}
+
+.site-prose a:not(.button-link):not(.gallery-project-card) {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.site-prose a:not(.button-link):not(.gallery-project-card):hover,
+.site-prose a:not(.button-link):not(.gallery-project-card):focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+/* Shared CTA style (replaces ttu/tracked/dim on multi-word buttons) */
+.button-link {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #357edd;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  transition: background-color 0.15s ease-in;
+}
+
+.button-link:hover,
+.button-link:focus-visible {
+  background-color: #00449e;
+  color: #fff;
+}
+
+/* Ananke's theme CSS resets anchor colors inside `.nested-links` (used for
+   markdown prose links: `.nested-links a` / `:hover` / `:focus`). Buttons
+   rendered inside that same content region need to keep their own text
+   color regardless. This rule is deliberately as specific as the theme
+   rule it counteracts, so it wins without `!important` or relying on
+   stylesheet load order. */
+.nested-links a.button-link,
+.nested-links a.button-link:hover,
+.nested-links a.button-link:focus {
+  color: #fff;
+}
+
+.button-link-block {
+  display: block;
+  width: 100%;
 }
 
 /* Slightly calmer card elevation than default shadow-4 on dense grids */
@@ -76,8 +184,6 @@ header a:focus-visible {
 
 .gallery-project-card img {
   display: block;
-  width: 100%;
-  height: auto;
 }
 
 /* Prefer reduced motion */

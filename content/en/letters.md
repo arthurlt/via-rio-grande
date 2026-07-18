@@ -8,6 +8,8 @@ See who has supported the Rio Grande Plan.
 
 Interested in supporting the Rio Grande Plan? Visit our [Contact](/contact/) page to offer your support.
 
+## Endorsements
+
 {{< grid >}}
 
   {{< grid-card title="Salt Lake County Council" button="View Letter" url="https://dropbox.riograndeplansaltlakecity.org/Letters%20and%20Documents/Letters%20of%20Support/SLCO%20Council%20Support%20Release.png" >}}

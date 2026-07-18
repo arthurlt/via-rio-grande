@@ -43,14 +43,14 @@
               loading="lazy"
               decoding="async"
             >
-            <figcaption class="f6 gray mt2 lh-copy gallery-project-card__title">{{ $page.Title }}</figcaption>
+            <figcaption class="f6 mid-gray mt2 lh-copy gallery-project-card__title">{{ $page.Title }}</figcaption>
           </figure>
         </a>
       {{ end }}
     {{ end }}
   {{ else }}
     <div class="cf w-100 pv3">
-      <div class="flex flex-wrap nl2 nr2">
+      <div class="flex flex-wrap justify-center nl2 nr2">
         {{ range . }}
           {{ $img := $page.Resources.GetMatch .src }}
           {{ if $img }}
@@ -77,7 +77,7 @@
                 decoding="async"
               >
               {{ with .caption }}
-              <figcaption class="f6 gray mt2 lh-copy">{{ . }}</figcaption>
+              <figcaption class="f6 mid-gray mt2 lh-copy">{{ . }}</figcaption>
               {{ end }}
             </figure>
           {{ end }}

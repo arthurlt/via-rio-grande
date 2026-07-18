@@ -1,5 +1,6 @@
 +++
 title = "Project 7: Lexi Trapier & Josh Lythgoe"
+description = "UVU architecture student work by Lexi Trapier & Josh Lythgoe imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 7
 students = "Lexi Trapier & Josh Lythgoe"
 

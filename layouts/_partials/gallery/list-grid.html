@@ -1,0 +1,7 @@
+<div class="flex flex-wrap nl2 nr2">
+  {{ range (.RegularPages.ByWeight) }}
+    <div class="w-100 w-50-m w-third-l ph2 mb3">
+      {{ partial "gallery/project.html" (dict "page" . "showHeading" false "coverOnly" true) }}
+    </div>
+  {{ end }}
+</div>

@@ -1,5 +1,6 @@
 +++
 title = "Project 3: Yan-Ho Ng & Sam Weisler"
+description = "UVU architecture student work by Yan-Ho Ng & Sam Weisler imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 3
 students = "Yan-Ho Ng & Sam Weisler"
 

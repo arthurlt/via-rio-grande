@@ -1,5 +1,6 @@
 +++
 title = "Project 8: Jared Bradshaw & Kent Miller"
+description = "UVU architecture student work by Jared Bradshaw & Kent Miller imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 8
 students = "Jared Bradshaw & Kent Miller"
 

@@ -2,8 +2,12 @@
 contentDir = "content/en"
 locale = "en-US"
 label = "English"
+weight = 1
+title = "The Rio Grande Plan"
 
 [es]
 contentDir = "content/es"
 locale = "es-US"
 label = "Español"
+weight = 2
+title = "El Plan Río Grande"

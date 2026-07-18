@@ -1,5 +1,6 @@
 +++
 title = "Project 5: Joseph Laudie & Sean Donner"
+description = "UVU architecture student work by Joseph Laudie & Sean Donner imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 5
 students = "Joseph Laudie & Sean Donner"
 

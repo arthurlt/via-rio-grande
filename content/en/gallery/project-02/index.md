@@ -1,5 +1,6 @@
 +++
 title = "Project 2: Samuel Zenteno & Desiree Ritchie"
+description = "UVU architecture student work by Samuel Zenteno & Desiree Ritchie imagining a revitalized Rio Grande Depot as Salt Lake City’s central transit station."
 weight = 2
 students = "Samuel Zenteno & Desiree Ritchie"
 
