@@ -1,0 +1,88 @@
+{{/* Shared UVU project heading + image grid. Expects dict: page, showHeading, linkTitle, coverOnly. */}}
+{{ $showHeading := .showHeading | default true }}
+{{ $linkTitle := .linkTitle | default false }}
+{{ $coverOnly := .coverOnly | default false }}
+{{ $page := .page }}
+{{ $widths := slice 480 768 1200 }}
+
+{{ if $showHeading }}
+  <h3 class="f3 lh-title mb3 mt4">
+    {{ if $linkTitle }}
+      <a href="{{ $page.RelPermalink }}" class="link dim blue">{{ $page.Title }}</a>
+    {{ else }}
+      {{ $page.Title }}
+    {{ end }}
+  </h3>
+{{ end }}
+
+{{ with $page.Params.gallery }}
+  {{ if $coverOnly }}
+    {{ with index . 0 }}
+      {{ $img := $page.Resources.GetMatch .src }}
+      {{ if $img }}
+        {{ $alt := .alt | default $page.Title }}
+        {{ $thumb := $img.Fit "768x512 webp q80" }}
+        <a href="{{ $page.RelPermalink }}" class="gallery-project-card db mb4">
+          <figure class="ma0">
+            <img
+              src="{{ $thumb.RelPermalink }}"
+              srcset="
+                {{- range $i, $w := $widths -}}
+                  {{- if le $w $img.Width -}}
+                    {{- $r := $img.Resize (printf "%dx webp q80" $w) -}}
+                    {{- if $i }}, {{ end -}}
+                    {{- $r.RelPermalink }} {{ $w }}w
+                  {{- end -}}
+                {{- end -}}
+              "
+              sizes="(min-width: 60em) 36rem, (min-width: 30em) 70vw, 92vw"
+              width="{{ $thumb.Width }}"
+              height="{{ $thumb.Height }}"
+              alt="{{ $alt }}"
+              class="w-100 br2 site-card"
+              loading="lazy"
+              decoding="async"
+            >
+            <figcaption class="f6 gray mt2 lh-copy gallery-project-card__title">{{ $page.Title }}</figcaption>
+          </figure>
+        </a>
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <div class="cf w-100 pv3">
+      <div class="flex flex-wrap nl2 nr2">
+        {{ range . }}
+          {{ $img := $page.Resources.GetMatch .src }}
+          {{ if $img }}
+            {{ $alt := .alt | default "" }}
+            {{ $base := $img.Resize "960x webp q80" }}
+            <figure class="w-100 w-50-m w-third-l ph2 mb4">
+              <img
+                src="{{ $base.RelPermalink }}"
+                srcset="
+                  {{- range $i, $w := $widths -}}
+                    {{- if le $w $img.Width -}}
+                      {{- $r := $img.Resize (printf "%dx webp q80" $w) -}}
+                      {{- if $i }}, {{ end -}}
+                      {{- $r.RelPermalink }} {{ $w }}w
+                    {{- end -}}
+                  {{- end -}}
+                "
+                sizes="(min-width: 60em) 22rem, (min-width: 30em) 45vw, 92vw"
+                width="{{ $base.Width }}"
+                height="{{ $base.Height }}"
+                alt="{{ $alt }}"
+                class="w-100 br2 site-card"
+                loading="lazy"
+                decoding="async"
+              >
+              {{ with .caption }}
+              <figcaption class="f6 gray mt2 lh-copy">{{ . }}</figcaption>
+              {{ end }}
+            </figure>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+{{ end }}

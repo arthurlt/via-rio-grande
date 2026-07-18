@@ -1,11 +1,12 @@
 text_color = "gray"
-site_logo = "images/logo.png"
+post_content_classes = "avenir"
+site_logo = "images/logo.webp"
 favicon = "images/favicon.png" # TODO: svg
 description = "Utah’s next big move"
-# custom_css = ["button.css"]
 
 [ananke]
 show_recent_posts = false
+custom_css = ["site.css"]
 
 [ananke.social.linkedin]
 username = "via-rio-grande"

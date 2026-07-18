@@ -1,0 +1,5 @@
+<div class="mt3 mb4">
+  <a href="{{ .Get "url" }}" class="f5 fw7 ttu tracked tc link dim br2 ph4 pv3 dib white bg-blue"{{ if strings.HasPrefix (.Get "url") "http" }} rel="noopener noreferrer" target="_blank"{{ end }}>
+    {{ .Get "text" }}
+  </a>
+</div>

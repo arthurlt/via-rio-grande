@@ -1,0 +1,40 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" -}}
+{{- $path := strings.TrimPrefix "/" $src -}}
+{{- $resource := resources.Get $path -}}
+{{- if not $resource -}}
+  {{- $resource = resources.Get (printf "images/%s" (path.Base $path)) -}}
+{{- end -}}
+{{- /* Prefer static URL when the path already points at /images/ and assets processing is unavailable */ -}}
+{{- $staticSrc := cond (strings.HasPrefix $src "/") $src (printf "/%s" $path) -}}
+<figure class="w-100 w-50-m w-third-l ph2 mb4">
+  {{- if $resource -}}
+    {{- $widths := slice 480 768 1200 -}}
+    {{- $base := $resource.Resize "960x webp q80" -}}
+    <img
+      src="{{ $base.RelPermalink }}"
+      srcset="
+        {{- range $i, $w := $widths -}}
+          {{- if le $w $resource.Width -}}
+            {{- $r := $resource.Resize (printf "%dx webp q80" $w) -}}
+            {{- if $i }}, {{ end -}}
+            {{- $r.RelPermalink }} {{ $w }}w
+          {{- end -}}
+        {{- end -}}
+      "
+      sizes="(min-width: 60em) 22rem, (min-width: 30em) 45vw, 92vw"
+      width="{{ $base.Width }}"
+      height="{{ $base.Height }}"
+      alt="{{ $alt }}"
+      class="w-100 br2 site-card"
+      loading="lazy"
+      decoding="async"
+    >
+  {{- else -}}
+    <img src="{{ $staticSrc }}" alt="{{ $alt }}" class="w-100 br2 site-card" loading="lazy" decoding="async">
+  {{- end -}}
+  {{- with $caption -}}
+  <figcaption class="f6 gray mt2 lh-copy">{{ . }}</figcaption>
+  {{- end -}}
+</figure>

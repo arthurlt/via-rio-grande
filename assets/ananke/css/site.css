@@ -1,0 +1,98 @@
+/* Via Rio Grande — site polish on top of Ananke / Tachyons */
+
+/* Logo: constrain on small screens so the hero is not logo-dominated */
+header.cover nav img,
+header nav img {
+  width: auto;
+  max-width: 5.5rem;
+  height: auto;
+  display: block;
+}
+
+@media screen and (min-width: 60em) {
+  header.cover nav img,
+  header nav img {
+    max-width: 10rem;
+  }
+}
+
+/* Nav links: better tap targets and wrapping on phones */
+header nav[role="navigation"] ul {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+header nav[role="navigation"] li a {
+  display: inline-block;
+  padding: 0.5rem 0.35rem;
+  line-height: 1.3;
+}
+
+@media screen and (min-width: 30em) {
+  header nav[role="navigation"] li a {
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+/* Header socials: keep footer set; hide duplicate icons on narrow screens */
+header nav .ananke-socials {
+  display: none;
+}
+
+@media screen and (min-width: 60em) {
+  header nav .ananke-socials {
+    display: block;
+  }
+}
+
+/* Focus visibility for keyboard users */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #357edd;
+  outline-offset: 3px;
+}
+
+header a:focus-visible {
+  outline-color: #fff;
+}
+
+/* Slightly calmer card elevation than default shadow-4 on dense grids */
+.site-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Gallery project cards on list pages */
+.gallery-project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gallery-project-card:hover .gallery-project-card__title,
+.gallery-project-card:focus-visible .gallery-project-card__title {
+  text-decoration: underline;
+}
+
+.gallery-project-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .dim:hover,
+  .dim:focus {
+    opacity: 1 !important;
+  }
+}

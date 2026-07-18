@@ -1,8 +1,15 @@
 {
-	"folders":
-	[
+	"folders": [
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"[HTML]": {
+			"syntax": "Packages/Go/Go HTML.sublime-syntax"
+		},
+		"[Markdown]": {
+			"syntax": "Packages/Go/Go Template Markdown.sublime-syntax"
+		}
+	}
 }

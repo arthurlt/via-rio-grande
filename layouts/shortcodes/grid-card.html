@@ -1,0 +1,11 @@
+<div class="w-100 w-50-m w-50-l ph3 pv3 flex flex-column">
+  <div class="bg-near-white pa4 br3 site-card flex-auto flex flex-column justify-between">
+    <div>
+      <h3 class="f3 navy mt0 mb2">{{ .Get "title" }}</h3>
+      <div class="f6 gray lh-copy">{{ .Inner | markdownify }}</div>
+    </div>
+    <a href="{{ .Get "url" }}" class="button-link w-100 tc f6 link dim br2 ph3 pv3 mt3 dib white bg-blue fw6 ttu tracked"{{ if strings.HasPrefix (.Get "url") "http" }} rel="noopener noreferrer" target="_blank"{{ end }}>
+      {{ .Get "button" }}
+    </a>
+  </div>
+</div>

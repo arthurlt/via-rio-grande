@@ -15,7 +15,8 @@ defaultContentLanguage = "en"
 id = ''
 
 [cascade]
-featured_image = '/images/ground-render.png'
+featured_image = '/images/ground-render.webp'
+images = ['/images/ground-render.webp']
 
 [module]
 [[module.imports]]

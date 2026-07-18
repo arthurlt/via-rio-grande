@@ -1,0 +1,11 @@
+{{ define "title" }}
+  {{- if eq .Title .Site.Title -}}
+    {{ .Site.Title }}
+  {{- else -}}
+    {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}
+  {{- end -}}
+{{ end }}
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+  {{ partial "page-content.html" . }}
+{{ end }}

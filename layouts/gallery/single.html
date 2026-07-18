@@ -1,0 +1,12 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+<article class="w-100 ph3 ph5-ns pv5 center mw9 {{ $.Param "text_color" | default "mid-gray" }}">
+  <section class="w-100 w-75-l center">
+    <p class="mb4">
+      <a href="{{ .Parent.RelPermalink }}" class="link dim blue">&larr; {{ .Parent.Title }}</a>
+    </p>
+
+    {{ partial "gallery/project.html" (dict "page" . "showHeading" false) }}
+  </section>
+</article>
+{{ end }}

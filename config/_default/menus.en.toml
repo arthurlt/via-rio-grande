@@ -1,11 +1,36 @@
 [[main]]
-    name = "Shop"
-    url = "https://store.viariogrande.org/"
-    weight = 998
-    params = { external = true }
+name = "Home"
+pageRef = "/"
+weight = 10
 
 [[main]]
-    name = "Donate"
-    url = "https://store.viariogrande.org/product/donation/"
-    weight = 999
-    params = { external = true }
+name = "About"
+pageRef = "/about"
+weight = 20
+
+[[main]]
+name = "Contact"
+pageRef = "/contact"
+weight = 30
+
+[[main]]
+name = "Gallery"
+pageRef = "/gallery"
+weight = 40
+
+[[main]]
+name = "Letters of Support"
+pageRef = "/letters"
+weight = 50
+
+# [[main]]
+# name = "Shop"
+# url = "https://store.viariogrande.org/"
+# weight = 998
+# params = { external = true }
+
+# [[main]]
+# name = "Donate"
+# url = "https://store.viariogrande.org/product/donation/"
+# weight = 999
+# params = { external = true }
