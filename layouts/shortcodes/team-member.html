@@ -3,20 +3,20 @@
 {{- $image := $sc.Get "image" -}}
 {{- with $sc.Page.Resources.GetMatch $image -}}
   {{- $thumb := .Fill "256x256 Center webp q85" -}}
-  <div class="team-member flex flex-column flex-row-l items-start mb4 pb3 bb b--light-gray">
-    <div class="team-member__photo pr0 pr4-l mb3 mb0-l flex-shrink-0">
+  <div class="flex flex-column flex-row-l items-start mb4 pb3 bb b--light-gray">
+    <div class="w4 pr0 pr4-l mb3 mb0-l flex-none">
       <img
         src="{{ $thumb.RelPermalink }}"
         alt="{{ lang.Translate "portraitOf" $name }}"
         width="{{ $thumb.Width }}"
         height="{{ $thumb.Height }}"
-        class="db br2 site-card"
+        class="db w-100 h-auto br2 ba b--black-10"
         loading="lazy"
         decoding="async"
       >
     </div>
     <div class="flex-auto">
-      <h3 class="f3 navy mt0 mb2 lh-title">{{ $name }}</h3>
+      <h3 class="f3 mt0 mb2 lh-title">{{ $name }}</h3>
       <div class="f5 lh-copy mid-gray">
         {{ $sc.Inner | markdownify }}
       </div>

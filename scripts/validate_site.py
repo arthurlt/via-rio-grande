@@ -19,10 +19,16 @@ ASSETS = ROOT / "assets"
 
 SOURCE_BAD_PATTERNS = (
     (re.compile(r"\bf6\s+gray\b|\bgray\s+f6\b"), "f6 gray (use f6 mid-gray for captions)"),
-    (re.compile(r"\bshadow-4\b"), "shadow-4 (prefer site-card)"),
+    (re.compile(r"\bshadow-4\b"), "shadow-4 (prefer ba b--black-10)"),
     (
         re.compile(r'style="[^"]*height:\s*auto', re.I),
         'inline height:auto (use global img { height: auto } in site.css)',
+    ),
+    (
+        re.compile(
+            r"\b(site-prose|site-card|button-link|gallery-project-card|team-member__photo|lang-switcher)\b"
+        ),
+        "custom semantic class (prefer Tachyons utilities; see CONTRIBUTING.md)",
     ),
 )
 
@@ -136,7 +142,7 @@ def check_shared_partial() -> list[str]:
         LAYOUTS / "_partials" / "page-content.html": "site-content.html",
         LAYOUTS / "gallery" / "list.html": "site-content.html",
         LAYOUTS / "gallery" / "single.html": "site-content.html",
-        LAYOUTS / "_partials" / "site-content.html": "site-prose",
+        LAYOUTS / "_partials" / "site-content.html": "mw7 center",
     }
     for path, needle in required.items():
         if not path.exists():

@@ -1,7 +1,7 @@
 {{/* Shared page shell. Dict: content (HTML string), optional after (HTML string), optional text_color. */}}
 {{- $textColor := .text_color | default "mid-gray" -}}
 <article class="w-100 ph3 ph5-ns pv4 pv5-ns center mw9 {{ $textColor }}">
-  <div class="w-100 site-prose nested-copy-line-height nested-links">
+  <div class="w-100 mw7 center nested-copy-line-height nested-links">
     {{ .content | safeHTML }}
   </div>
   {{- with .after -}}

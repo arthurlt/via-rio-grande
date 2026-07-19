@@ -8,6 +8,10 @@ The website for the 501(c)(4) non-profit Via Rio Grande (Hugo + Ananke).
 hugo server
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for styling conventions and the pre-submit checklist.
+
 ## Checks
 
 Run a dependency-light build and HTML/source validation (Python stdlib + Hugo only):

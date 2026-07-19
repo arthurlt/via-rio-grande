@@ -14,8 +14,8 @@ In the state of Utah, all large civil projects begin and end with the State Legi
 
 {{< button url="https://le.utah.gov/GIS/findDistrict.jsp" text="Find My Elected Officials" >}}
 
-{{< button url="https://le.utah.gov/committee/committee.jsp?year=2024&com=HSTTRA" text="House Transportation Committee" >}}
+{{< button url="https://le.utah.gov/committee/committee.jsp?year=2026&com=HSTTRA" text="House Transportation Committee" >}}
 
-{{< button url="https://le.utah.gov/committee/committee.jsp?year=2024&com=SSTTPT" text="Senate Transportation Committee" >}}
+{{< button url="https://le.utah.gov/committee/committee.jsp?year=2026&com=SSTTPT" text="Senate Transportation Committee" >}}
 
 {{< button url="https://dropbox.riograndeplansaltlakecity.org/Letters%20and%20Documents/Rio%20Grande%20Plan%20Letter.docx" text="Download a form letter" >}}

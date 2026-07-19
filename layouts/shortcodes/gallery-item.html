@@ -27,12 +27,12 @@
       width="{{ $base.Width }}"
       height="{{ $base.Height }}"
       alt="{{ $alt }}"
-      class="w-100 br2 site-card"
+      class="w-100 h-auto br2 ba b--black-10"
       loading="lazy"
       decoding="async"
     >
   {{- else -}}
-    <img src="{{ $staticSrc }}" alt="{{ $alt }}" class="w-100 br2 site-card" loading="lazy" decoding="async">
+    <img src="{{ $staticSrc }}" alt="{{ $alt }}" class="w-100 h-auto br2 ba b--black-10" loading="lazy" decoding="async">
   {{- end -}}
   {{- with $caption -}}
   <figcaption class="f6 mid-gray mt2 lh-copy">{{ . }}</figcaption>

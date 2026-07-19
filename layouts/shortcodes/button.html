@@ -1,5 +1,5 @@
 <div class="mt3 mb4 tc">
-  <a href="{{ .Get "url" }}" class="button-link"{{ if strings.HasPrefix (.Get "url") "http" }} rel="noopener noreferrer" target="_blank"{{ end }}>
+  <a href="{{ .Get "url" }}" class="dib f5 fw6 lh-title tc no-underline white bg-blue hover-bg-dark-blue pv3 ph4 br2"{{ if strings.HasPrefix (.Get "url") "http" }} rel="noopener noreferrer" target="_blank"{{ end }}>
     {{ .Get "text" }}
   </a>
 </div>
