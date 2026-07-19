@@ -29,4 +29,4 @@ Los logotipos, renderizados y mapas oficiales a continuación pueden compartirse
 
 ¡Fue un honor que el Plan Río Grande fuera tema para Arquitectura en UVU! Los estudiantes crearon planos y renderizados de una Estación Río Grande plenamente realizada como estación central de tránsito de Salt Lake City. Nuestro sincero agradecimiento a estos estudiantes y a sus profesores y mentores por estos renderizados tan cuidadosamente elaborados.
 
-Instructor: Brandon Ro, AIA, NCARB
+Profesor: Brandon Ro, AIA, NCARB

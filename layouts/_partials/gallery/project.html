@@ -6,83 +6,77 @@
 {{ $widths := slice 480 768 1200 }}
 
 {{ if $showHeading }}
-  <h3 class="f3 lh-title mb3 mt4">
-    {{ if $linkTitle }}
-      <a href="{{ $page.RelPermalink }}" class="link dim blue">{{ $page.Title }}</a>
-    {{ else }}
-      {{ $page.Title }}
-    {{ end }}
-  </h3>
+	<h3 class="mb3 mt4 f3 lh-title">
+		{{ if $linkTitle }}
+			<a href="{{ $page.RelPermalink }}" class="dim blue link">{{ $page.Title }}</a>
+		{{ else }}
+			{{ $page.Title }}
+		{{ end }}
+	</h3>
 {{ end }}
 
 {{ with $page.Params.gallery }}
-  {{ if $coverOnly }}
-    {{ with index . 0 }}
-      {{ $img := $page.Resources.GetMatch .src }}
-      {{ if $img }}
-        {{ $alt := .alt | default $page.Title }}
-        {{ $thumb := $img.Fit "768x512 webp q80" }}
-        <a href="{{ $page.RelPermalink }}" class="link db dim mb4">
-          <figure class="ma0">
-            <img
-              src="{{ $thumb.RelPermalink }}"
-              srcset="
-                {{- range $i, $w := $widths -}}
-                  {{- if le $w $img.Width -}}
-                    {{- $r := $img.Resize (printf "%dx webp q80" $w) -}}
-                    {{- if $i }}, {{ end -}}
-                    {{- $r.RelPermalink }} {{ $w }}w
-                  {{- end -}}
-                {{- end -}}
-              "
-              sizes="(min-width: 60em) 36rem, (min-width: 30em) 70vw, 92vw"
-              width="{{ $thumb.Width }}"
-              height="{{ $thumb.Height }}"
-              alt="{{ $alt }}"
-              class="w-100 h-auto br2 ba b--black-10"
-              loading="lazy"
-              decoding="async"
-            >
-            <figcaption class="f6 mid-gray mt2 lh-copy">{{ $page.Title }}</figcaption>
-          </figure>
-        </a>
-      {{ end }}
-    {{ end }}
-  {{ else }}
-    <div class="cf w-100 pv3">
-      <div class="flex flex-wrap justify-center nl2 nr2">
-        {{ range . }}
-          {{ $img := $page.Resources.GetMatch .src }}
-          {{ if $img }}
-            {{ $alt := .alt | default "" }}
-            {{ $base := $img.Resize "960x webp q80" }}
-            <figure class="w-100 w-50-m w-third-l ph2 mb4">
-              <img
-                src="{{ $base.RelPermalink }}"
-                srcset="
-                  {{- range $i, $w := $widths -}}
-                    {{- if le $w $img.Width -}}
-                      {{- $r := $img.Resize (printf "%dx webp q80" $w) -}}
-                      {{- if $i }}, {{ end -}}
-                      {{- $r.RelPermalink }} {{ $w }}w
-                    {{- end -}}
-                  {{- end -}}
-                "
-                sizes="(min-width: 60em) 22rem, (min-width: 30em) 45vw, 92vw"
-                width="{{ $base.Width }}"
-                height="{{ $base.Height }}"
-                alt="{{ $alt }}"
-                class="w-100 h-auto br2 ba b--black-10"
-                loading="lazy"
-                decoding="async"
-              >
-              {{ with .caption }}
-              <figcaption class="f6 mid-gray mt2 lh-copy">{{ . }}</figcaption>
-              {{ end }}
-            </figure>
-          {{ end }}
-        {{ end }}
-      </div>
-    </div>
-  {{ end }}
+	{{ if $coverOnly }}
+		{{ with index . 0 }}
+			{{ $img := $page.Resources.GetMatch .src }}
+			{{ if $img }}
+				{{ $alt := .alt | default $page.Title }}
+				{{ $thumb := $img.Fit "768x512 webp q80" }}
+				<a href="{{ $page.RelPermalink }}" class="db dim mb4 link">
+					<figure class="ma0">
+						<img
+							src="{{ $thumb.RelPermalink }}"
+							srcset="
+{{- range $i, $w := $widths -}}
+{{- if le $w $img.Width -}}
+						{{- $r := $img.Resize (printf "%dx webp q80" $w) -}}
+						{{- if $i }}, {{ end -}}{{- $r.RelPermalink }} {{ $w }}w
+{{- end -}}{{- end -}}"
+							sizes="(min-width: 60em) 36rem, (min-width: 30em) 70vw, 92vw"
+							width="{{ $thumb.Width }}"
+							height="{{ $thumb.Height }}"
+							alt="{{ $alt }}"
+							class="b--black-10 ba br2 h-auto w-100"
+							loading="lazy"
+							decoding="async"
+						>
+						<figcaption class="mt2 f6 lh-copy mid-gray">{{ $page.Title }}</figcaption>
+					</figure>
+				</a>
+			{{ end }}
+		{{ end }}
+	{{ else }}
+		<div class="cf pv3 w-100">
+			<div class="flex flex-wrap justify-center nl2 nr2">
+				{{ range . }}
+					{{ $img := $page.Resources.GetMatch .src }}
+					{{ if $img }}
+						{{ $alt := .alt | default "" }}
+						{{ $base := $img.Resize "960x webp q80" }}
+						<figure class="mb4 ph2 w-100 w-50-m w-third-l">
+							<img
+								src="{{ $base.RelPermalink }}"
+								srcset="
+{{- range $i, $w := $widths -}}
+{{- if le $w $img.Width -}}
+							{{- $r := $img.Resize (printf "%dx webp q80" $w) -}}
+							{{- if $i }}, {{ end -}}{{- $r.RelPermalink }} {{ $w }}w
+{{- end -}}{{- end -}}"
+								sizes="(min-width: 60em) 22rem, (min-width: 30em) 45vw, 92vw"
+								width="{{ $base.Width }}"
+								height="{{ $base.Height }}"
+								alt="{{ $alt }}"
+								class="b--black-10 ba br2 h-auto w-100"
+								loading="lazy"
+								decoding="async"
+							>
+							{{ with .caption }}
+								<figcaption class="mt2 f6 lh-copy mid-gray">{{ . }}</figcaption>
+							{{ end }}
+						</figure>
+					{{ end }}
+				{{ end }}
+			</div>
+		</div>
+	{{ end }}
 {{ end }}

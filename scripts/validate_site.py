@@ -16,6 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LAYOUTS = ROOT / "layouts"
 CONTENT = ROOT / "content"
 ASSETS = ROOT / "assets"
+CONFIG = ROOT / "config" / "_default"
+I18N = ROOT / "i18n"
 
 SOURCE_BAD_PATTERNS = (
     (re.compile(r"\bf6\s+gray\b|\bgray\s+f6\b"), "f6 gray (use f6 mid-gray for captions)"),
@@ -142,7 +144,7 @@ def check_shared_partial() -> list[str]:
         LAYOUTS / "_partials" / "page-content.html": "site-content.html",
         LAYOUTS / "gallery" / "list.html": "site-content.html",
         LAYOUTS / "gallery" / "single.html": "site-content.html",
-        LAYOUTS / "_partials" / "site-content.html": "mw7 center",
+        LAYOUTS / "_partials" / "site-content.html": "center mw7",
     }
     for path, needle in required.items():
         if not path.exists():
@@ -203,6 +205,160 @@ def check_front_matter() -> list[str]:
             if key not in fields or not fields[key]:
                 warnings.append(f"{path.relative_to(ROOT)}: missing front matter {key}")
     return warnings
+
+
+def content_md_relpaths(lang: str) -> set[str]:
+    base = CONTENT / lang
+    if not base.is_dir():
+        return set()
+    return {p.relative_to(base).as_posix() for p in base.rglob("*.md") if p.is_file()}
+
+
+def gallery_srcs(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    return re.findall(r'^src = "([^"]+)"', path.read_text(encoding="utf-8"), re.M)
+
+
+def toml_section_keys(path: Path) -> set[str]:
+    """Top-level [section] keys from a simple TOML i18n/menu-style file."""
+    if not path.exists():
+        return set()
+    keys: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line.startswith("[") and line.endswith("]") and not line.startswith("[["):
+            keys.add(line[1:-1].strip())
+    return keys
+
+
+def menu_entries(path: Path) -> list[tuple[str, str, str]]:
+    """Return (pageRef_or_url, weight, kind) for each uncommented [[main]] entry."""
+    if not path.exists():
+        return []
+    entries: list[tuple[str, str, str]] = []
+    page_ref = ""
+    url = ""
+    weight = ""
+    in_main = False
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if not line:
+            continue
+        if line == "[[main]]":
+            if in_main and (page_ref or url):
+                kind = "pageRef" if page_ref else "url"
+                entries.append((page_ref or url, weight, kind))
+            in_main = True
+            page_ref = ""
+            url = ""
+            weight = ""
+            continue
+        if not in_main:
+            continue
+        if line.startswith("pageRef"):
+            page_ref = line.partition("=")[2].strip().strip("\"'")
+        elif line.startswith("url"):
+            url = line.partition("=")[2].strip().strip("\"'")
+        elif line.startswith("weight"):
+            weight = line.partition("=")[2].strip()
+    if in_main and (page_ref or url):
+        kind = "pageRef" if page_ref else "url"
+        entries.append((page_ref or url, weight, kind))
+    return entries
+
+
+def check_content_parity() -> list[str]:
+    """Require the same markdown page inventory in en and es."""
+    errors: list[str] = []
+    en_pages = content_md_relpaths("en")
+    es_pages = content_md_relpaths("es")
+    for rel in sorted(en_pages - es_pages):
+        errors.append(f"missing Spanish content page: content/es/{rel}")
+    for rel in sorted(es_pages - en_pages):
+        errors.append(f"extra Spanish content page without English twin: content/es/{rel}")
+    return errors
+
+
+def check_gallery_parity() -> list[str]:
+    """Require matching UVU project bundles and image src lists across languages."""
+    errors: list[str] = []
+    en_gallery = CONTENT / "en" / "gallery"
+    es_gallery = CONTENT / "es" / "gallery"
+    en_projects = {
+        p.name
+        for p in en_gallery.glob("project-*")
+        if p.is_dir() and (p / "index.md").exists()
+    }
+    es_projects = {
+        p.name
+        for p in es_gallery.glob("project-*")
+        if p.is_dir() and (p / "index.md").exists()
+    }
+    for name in sorted(en_projects - es_projects):
+        errors.append(f"missing Spanish gallery project: content/es/gallery/{name}/index.md")
+    for name in sorted(es_projects - en_projects):
+        errors.append(
+            f"extra Spanish gallery project without English twin: "
+            f"content/es/gallery/{name}/index.md"
+        )
+    for name in sorted(en_projects & es_projects):
+        en_path = en_gallery / name / "index.md"
+        es_path = es_gallery / name / "index.md"
+        en_src = gallery_srcs(en_path)
+        es_src = gallery_srcs(es_path)
+        if en_src != es_src:
+            errors.append(
+                f"gallery image src mismatch for {name}: "
+                f"en={en_src} es={es_src}"
+            )
+        en_fields = front_matter_fields(en_path)
+        es_fields = front_matter_fields(es_path)
+        if en_fields.get("weight") != es_fields.get("weight"):
+            errors.append(
+                f"gallery weight mismatch for {name}: "
+                f"en={en_fields.get('weight')!r} es={es_fields.get('weight')!r}"
+            )
+        for key in ("description",):
+            if key not in es_fields or not es_fields[key]:
+                errors.append(f"{es_path.relative_to(ROOT)}: missing front matter {key}")
+    return errors
+
+
+def check_i18n_parity() -> list[str]:
+    errors: list[str] = []
+    en_keys = toml_section_keys(I18N / "en.toml")
+    es_keys = toml_section_keys(I18N / "es.toml")
+    for key in sorted(en_keys - es_keys):
+        errors.append(f"missing i18n key in es.toml: [{key}]")
+    for key in sorted(es_keys - en_keys):
+        errors.append(f"extra i18n key in es.toml without English twin: [{key}]")
+    return errors
+
+
+def check_menu_parity() -> list[str]:
+    """Menus must share the same pageRef/url + weight structure (names may differ)."""
+    errors: list[str] = []
+    en_menu = menu_entries(CONFIG / "menus.en.toml")
+    es_menu = menu_entries(CONFIG / "menus.es.toml")
+    if len(en_menu) != len(es_menu):
+        errors.append(
+            f"menu entry count mismatch: en={len(en_menu)} es={len(es_menu)}"
+        )
+    for idx, (en_entry, es_entry) in enumerate(zip(en_menu, es_menu)):
+        if en_entry != es_entry:
+            errors.append(
+                f"menu structure mismatch at index {idx}: "
+                f"en={en_entry} es={es_entry}"
+            )
+    # If lengths differ, also flag trailing unmatched entries.
+    if len(en_menu) > len(es_menu):
+        for entry in en_menu[len(es_menu) :]:
+            errors.append(f"missing Spanish menu entry for {entry}")
+    elif len(es_menu) > len(en_menu):
+        for entry in es_menu[len(en_menu) :]:
+            errors.append(f"extra Spanish menu entry without English twin: {entry}")
+    return errors
 
 
 def check_large_sources() -> list[str]:
@@ -325,6 +481,10 @@ def main() -> int:
     errors.extend(check_source_patterns())
     errors.extend(check_shared_partial())
     errors.extend(check_responsive_img_css())
+    errors.extend(check_content_parity())
+    errors.extend(check_gallery_parity())
+    errors.extend(check_i18n_parity())
+    errors.extend(check_menu_parity())
     warnings.extend(check_front_matter())
     warnings.extend(check_large_sources())
 

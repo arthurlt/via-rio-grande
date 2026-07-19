@@ -1,8 +1,9 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
-  {{ partial "site-content.html" (dict
-    "content" (partial "gallery/back-link.html" .)
-    "text_color" ($.Param "text_color" | default "mid-gray")
-    "after" (partial "gallery/project.html" (dict "page" . "showHeading" false))
-  ) }}
+{{ partial "site-content.html" (dict
+	"content" (partial "gallery/back-link.html" .)
+	"text_color" ($.Param "text_color" | default "mid-gray")
+	"after" (partial "gallery/project.html" (dict "page" . "showHeading" false))
+	)
+}}
 {{ end }}

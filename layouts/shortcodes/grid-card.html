@@ -1,11 +1,11 @@
-<div class="w-100 w-50-m w-50-l ph3 pv3 flex flex-column">
-  <div class="bg-near-white pa4 br3 ba b--black-10 flex-auto flex flex-column justify-between">
-    <div>
-      <h3 class="f3 mt0 mb2 lh-title">{{ .Get "title" }}</h3>
-      <div class="f5 mid-gray lh-copy">{{ .Inner | markdownify }}</div>
-    </div>
-    <a href="{{ .Get "url" }}" class="db w-100 f5 fw6 lh-title tc no-underline white bg-blue hover-bg-dark-blue pv3 ph4 br2 mt3"{{ if strings.HasPrefix (.Get "url") "http" }} rel="noopener noreferrer" target="_blank"{{ end }}>
-      {{ .Get "button" }}
-    </a>
-  </div>
+<div class="flex flex-column ph3 pv3 w-100 w-50-l w-50-m">
+	<div class="flex flex-auto flex-column justify-between b--black-10 ba bg-near-white br3 pa4">
+		<div>
+			<h3 class="mb2 mt0 f3 lh-title">{{ .Get "title" }}</h3>
+			<div class="f5 lh-copy mid-gray">{{ .Inner | markdownify }}</div>
+		</div>
+		<a href="{{ .Get "url" }}" class="db bg-blue br2 hover-bg-dark-blue mt3 ph4 pv3 w-100 f5 fw6 lh-title no-underline tc white"{{ if strings.HasPrefix (.Get "url") "http" }} rel="noopener noreferrer" target="_blank"{{ end }}>
+			{{ .Get "button" }}
+		</a>
+	</div>
 </div>

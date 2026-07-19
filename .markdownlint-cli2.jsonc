@@ -1,0 +1,32 @@
+{
+  "globs": [
+    "*.md",
+    "content/**/*.md",
+    "archetypes/**/*.md"
+  ],
+  "ignores": [
+    "node_modules/**",
+    "public/**",
+    "resources/**"
+  ],
+  "config": {
+    "default": true,
+    // Hugo pages often use the template H1; content starts at ##.
+    "MD002": false,
+    "MD041": false,
+    // TOML front matter (+++ ... +++) is not YAML; skip front-matter rules.
+    "MD022": false,
+    // Shortcode lines and long URLs commonly exceed 80 chars.
+    "MD013": false,
+    // Nested lists inside shortcode content are common.
+    "MD007": false,
+    // Allow HTML comments / raw HTML when needed in docs.
+    "MD033": false,
+    // Duplicate headings across gallery projects are intentional.
+    "MD024": false,
+    // URLs appear as shortcode attributes (url="https://..."), not bare prose links.
+    "MD034": false,
+    // Content headings may use intentional trailing punctuation (e.g. "Contact Us!").
+    "MD026": false
+  }
+}

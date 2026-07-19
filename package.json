@@ -1,0 +1,18 @@
+{
+  "name": "via-rio-grande-website",
+  "private": true,
+  "description": "Dev lint tooling for the Via Rio Grande Hugo site (CI-focused)",
+  "scripts": {
+    "lint": "npm run lint:css && npm run lint:md",
+    "lint:css": "stylelint \"assets/**/*.css\"",
+    "lint:md": "markdownlint-cli2"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.23.1",
+    "stylelint": "^17.14.0",
+    "stylelint-config-standard": "^40.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

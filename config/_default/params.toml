@@ -2,14 +2,13 @@ text_color = "mid-gray"
 post_content_classes = "avenir"
 site_logo = "images/logo.webp"
 favicon = "images/favicon.png"
-description = "Utah’s next big move"
 
 [ananke]
 show_recent_posts = false
 custom_css = ["site.css"]
 
-[ananke.social.linkedin]
-username = "via-rio-grande"
+# [ananke.social.linkedin]
+# username = "via-rio-grande"
 
 [ananke.social.youtube]
 username = "CSLenhart"
@@ -21,4 +20,4 @@ username = '61566364769715'
 username = 'riograndeplan'
 
 [ananke.social.follow]
-networks = ["instagram", "youtube", "facebook", "linkedin"]
+networks = ["instagram", "youtube", "facebook"]

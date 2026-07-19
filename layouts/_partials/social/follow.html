@@ -4,37 +4,37 @@
 {{- $networks := $config.follow.networks -}}
 
 <div class="ananke-socials">
-  {{- range $networks -}}
-    {{- $network := . -}}
-    {{- $setup := collections.Index $config.networks $network -}}
-    {{- $profile := collections.Index $config $network -}}
-    {{- $rel := $profile.rel | compare.Default "" -}}
-    {{- $label := $profile.label | compare.Default $setup.label -}}
+	{{- range $networks -}}
+		{{- $network := . -}}
+		{{- $setup := collections.Index $config.networks $network -}}
+		{{- $profile := collections.Index $config $network -}}
+		{{- $rel := $profile.rel | compare.Default "" -}}
+		{{- $label := $profile.label | compare.Default $setup.label -}}
 
-    {{- $link := $setup.profile -}}
-    {{- with $profile.username -}}
-      {{- $link = printf $link . -}}
-    {{- end -}}
-    {{- with $profile.profilelink -}}
-      {{- $link = $profile.profilelink -}}
-    {{- end -}}
+		{{- $link := $setup.profile -}}
+		{{- with $profile.username -}}
+			{{- $link = printf $link . -}}
+		{{- end -}}
+		{{- with $profile.profilelink -}}
+			{{- $link = $profile.profilelink -}}
+		{{- end -}}
 
-    {{- $languageDirection := compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "ml1" "mr1" -}}
-    {{- $followLabel := lang.Translate "followOn" $label -}}
-    <a href="{{ $link }}" target="_blank" rel="noopener noreferrer{{- with $rel }} {{ . -}}{{- end -}}"
-        class="ananke-social-link link-transition {{ $network }} link dib z-999 pt3 pt0-l {{ $languageDirection }}"
-        title="{{ $followLabel }}"
-        aria-label="{{ $followLabel }}">
-      {{- with $setup.icon -}}
-        {{- $icon := resources.Get (fmt.Printf "ananke/socials/%s.svg" .) -}}
-        {{- with $icon -}}
-          <span class="icon">
-            {{ .Content | safe.HTML }}
-          </span>
-        {{- end -}}
-      {{- else -}}
-        {{- $label -}}
-      {{- end -}}
-    </a>
-  {{- end -}}
+		{{- $languageDirection := compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "ml1" "mr1" -}}
+		{{- $followLabel := lang.Translate "followOn" $label -}}
+		<a href="{{ $link }}" target="_blank" rel="noopener noreferrer{{- with $rel }} {{ . -}}{{- end -}}"
+			class="dib z-999 pt0-l pt3 link ananke-social-link link-transition {{ $languageDirection }} {{ $network }}"
+			title="{{ $followLabel }}"
+			aria-label="{{ $followLabel }}">
+			{{- with $setup.icon -}}
+				{{- $icon := resources.Get (fmt.Printf "ananke/socials/%s.svg" .) -}}
+				{{- with $icon -}}
+					<span class="icon">
+						{{ .Content | safe.HTML }}
+					</span>
+				{{- end -}}
+			{{- else -}}
+				{{- $label -}}
+			{{- end -}}
+		</a>
+	{{- end -}}
 </div>

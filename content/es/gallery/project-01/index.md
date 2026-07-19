@@ -7,25 +7,25 @@ students = "Barret Blake & Kevin Hart"
 [[params.gallery]]
 src = "analytique.jpg"
 caption = "Analítica"
-alt = "Proyecto 1 Analítica — renderizado por Barret Blake and Kevin Hart"
+alt = "Proyecto 1 Analítica — renderizado por Barret Blake y Kevin Hart"
 
 [[params.gallery]]
 src = "board-1.jpg"
 caption = "Tablero 1"
-alt = "Proyecto 1 Tablero 1 — renderizado por Barret Blake and Kevin Hart"
+alt = "Proyecto 1 Tablero 1 — renderizado por Barret Blake y Kevin Hart"
 
 [[params.gallery]]
 src = "board-2.jpg"
 caption = "Tablero 2"
-alt = "Proyecto 1 Tablero 2 — renderizado por Barret Blake and Kevin Hart"
+alt = "Proyecto 1 Tablero 2 — renderizado por Barret Blake y Kevin Hart"
 
 [[params.gallery]]
 src = "exterior.jpg"
 caption = "Exterior"
-alt = "Proyecto 1 Exterior — renderizado por Barret Blake and Kevin Hart"
+alt = "Proyecto 1 Exterior — renderizado por Barret Blake y Kevin Hart"
 
 [[params.gallery]]
 src = "interior.jpg"
 caption = "Interior"
-alt = "Proyecto 1 Interior — renderizado por Barret Blake and Kevin Hart"
+alt = "Proyecto 1 Interior — renderizado por Barret Blake y Kevin Hart"
 +++

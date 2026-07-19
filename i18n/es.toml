@@ -5,10 +5,16 @@ other = "Comercio"
 other = "Donar"
 
 [mainNav]
-other = "Principal"
+other = "Navegación principal"
 
 [followOn]
 other = "seguir en {{ . }} - Se abre en una ventana nueva"
 
 [portraitOf]
 other = "Retrato de {{ . }}"
+
+[pageTitle]
+other = "Página de {{ .Name }}"
+
+[switchToLanguage]
+other = "Cambiar a {{ . }}"

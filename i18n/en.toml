@@ -5,10 +5,16 @@ other = "Shop"
 other = "Donate"
 
 [mainNav]
-other = "Main"
+other = "Main navigation"
 
 [followOn]
 other = "follow on {{ . }} - Opens in a new window"
 
 [portraitOf]
 other = "Portrait of {{ . }}"
+
+[pageTitle]
+other = "{{ .Name }} page"
+
+[switchToLanguage]
+other = "Switch to {{ . }}"

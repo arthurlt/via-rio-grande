@@ -5,9 +5,15 @@ label = "English"
 weight = 1
 title = "The Rio Grande Plan"
 
+[en.params]
+description = "Utah’s next big move"
+
 [es]
 contentDir = "content/es"
 locale = "es-US"
 label = "Español"
 weight = 2
 title = "El Plan Río Grande"
+
+[es.params]
+description = "El próximo gran movimiento de Utah"

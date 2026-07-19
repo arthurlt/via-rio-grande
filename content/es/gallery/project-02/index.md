@@ -7,15 +7,15 @@ students = "Samuel Zenteno & Desiree Ritchie"
 [[params.gallery]]
 src = "analytique.jpg"
 caption = "Analítica"
-alt = "Proyecto 2 Analítica — renderizado por Samuel Zenteno and Desiree Ritchie"
+alt = "Proyecto 2 Analítica — renderizado por Samuel Zenteno y Desiree Ritchie"
 
 [[params.gallery]]
 src = "exterior.jpg"
 caption = "Exterior"
-alt = "Proyecto 2 Exterior — renderizado por Samuel Zenteno and Desiree Ritchie"
+alt = "Proyecto 2 Exterior — renderizado por Samuel Zenteno y Desiree Ritchie"
 
 [[params.gallery]]
 src = "interior.jpg"
 caption = "Interior"
-alt = "Proyecto 2 Interior — renderizado por Samuel Zenteno and Desiree Ritchie"
+alt = "Proyecto 2 Interior — renderizado por Samuel Zenteno y Desiree Ritchie"
 +++

@@ -1,23 +1,23 @@
 {{ $featured_image := partials.Include "func/GetFeaturedImage.html" . }}
 {{ $featured_image_resource := partials.Include "func/GetFeaturedImageResource.html" . }}
 {{ if $featured_image }}
-  {{/* Trimming the slash and adding absURL make sure the image works no matter where our site lives */}}
-  {{ $featured_image_class := .Params.featured_image_class | compare.Default "cover bg-center" }}
-  {{ $cover_dimming_class := .Params.cover_dimming_class | compare.Default "bg-black-60" }}
-  {{ $header_section_class := .Param "header_section_class" | compare.Default "tc-l pv5 pv6-l ph3 ph5-ns mw9 center" }}
-  {{ $responsive_image_widths := .Site.Params.ananke.responsive_image_widths | compare.Default (slice 480 960 1440 1920) }}
-  {{ $responsive_header_id := "" }}
-  {{ $background_image := $featured_image }}
-  {{ if and $featured_image_resource (compare.Ne $featured_image_resource.MediaType.SubType "svg") }}
-    {{ $responsive_header_id = printf "featured-image-%s" (crypto.MD5 $featured_image_resource.RelPermalink) }}
-    {{ range first 1 $responsive_image_widths }}
-      {{ if compare.Le . $featured_image_resource.Width }}
-        {{ $resized_image := $featured_image_resource.Resize (printf "%dx" .) }}
-        {{ $background_image = $resized_image.RelPermalink }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
-  {{ if $responsive_header_id }}
+	{{/* Trimming the slash and adding absURL make sure the image works no matter where our site lives */}}
+	{{ $featured_image_class := .Params.featured_image_class | compare.Default "bg-center cover" }}
+	{{ $cover_dimming_class := .Params.cover_dimming_class | compare.Default "bg-black-60" }}
+	{{ $header_section_class := .Param "header_section_class" | compare.Default "center mw9 ph3 ph5-ns pv5 pv6-l tc-l" }}
+	{{ $responsive_image_widths := .Site.Params.ananke.responsive_image_widths | compare.Default (slice 480 960 1440 1920) }}
+	{{ $responsive_header_id := "" }}
+	{{ $background_image := $featured_image }}
+	{{ if and $featured_image_resource (compare.Ne $featured_image_resource.MediaType.SubType "svg") }}
+		{{ $responsive_header_id = printf "featured-image-%s" (crypto.MD5 $featured_image_resource.RelPermalink) }}
+		{{ range first 1 $responsive_image_widths }}
+			{{ if compare.Le . $featured_image_resource.Width }}
+				{{ $resized_image := $featured_image_resource.Resize (printf "%dx" .) }}
+				{{ $background_image = $resized_image.RelPermalink }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+	{{ if $responsive_header_id }}
     <style>
       {{ range $responsive_image_widths }}
         {{ if compare.Le . $featured_image_resource.Width }}
@@ -28,26 +28,26 @@
         {{ end }}
       {{ end }}
     </style>
-  {{ end }}
-  <header {{ with $responsive_header_id }}id="{{ . }}" {{ end }}class="{{ $featured_image_class }}" style="background-image: url('{{ $background_image }}');">
-    <div class="{{ $cover_dimming_class }}">
-      {{ partials.Include "site-navigation.html" . }}
-      <div class="{{ $header_section_class }}">
-        {{ if not .Params.omit_header_text }}
-          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title mt0">{{ .Title | compare.Default .Site.Title }}</h1>
-          {{ with .Params.description  }}
-            <p class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
-              {{ . }}
-            </p>
-          {{ end }}
-        {{ end }}
-      </div>
-    </div>
-  </header>
+	{{ end }}
+	<header {{ with $responsive_header_id }}id="{{ . }}" {{ end }}class="{{ $featured_image_class }}" style="background-image: url('{{ $background_image }}');">
+		<div class="{{ $cover_dimming_class }}">
+			{{ partials.Include "site-navigation.html" . }}
+			<div class="{{ $header_section_class }}">
+				{{ if not .Params.omit_header_text }}
+					<h1 class="mb0 mt0 f1-l f2 fw2 lh-title white-90">{{ .Title | compare.Default .Site.Title }}</h1>
+					{{ with .Params.description }}
+						<p class="center mb4 mt3 f3-l f5 fw1 lh-copy measure-wide-l white-80">
+							{{ . }}
+						</p>
+					{{ end }}
+				{{ end }}
+			</div>
+		</div>
+	</header>
 {{ else }}
-  <header>
-    <div class="{{ .Site.Params.background_color_class | compare.Default "bg-black" }}">
-      {{ partials.Include "site-navigation.html" . }}
-    </div>
-  </header>
+	<header>
+		<div class="{{ .Site.Params.background_color_class | compare.Default "bg-black" }}">
+			{{ partials.Include "site-navigation.html" . }}
+		</div>
+	</header>
 {{ end }}

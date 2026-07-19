@@ -1,28 +1,28 @@
-<nav class="relative pv3 ph3 ph5-ns mw9 center" role="navigation" aria-label="{{ lang.Translate "mainNav" }}">
-  <div class="flex-l center items-center justify-between">
-    <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white white-90 dib no-underline">
-      {{ with .Site.Params.site_logo }}
-        <img src="{{ urls.RelURL . }}" class="db w-auto mw4 mw5-l h-auto" width="160" height="160" alt="{{ $.Site.Title }}" decoding="async">
-      {{ else }}
-        {{ .Site.Title }}
-      {{ end }}
-    </a>
-    <div class="flex-l items-center">
-      {{ partials.Include "i18nlist.html" . }}
-      {{ if .Site.Menus.main }}
-        <ul class="{{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "pr0 ml3" "pl0 mr3" }}">
-          {{ range .Site.Menus.main }}
-          <li class="list f5 f4-ns fw4 dib {{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "pl3" "pr3" }}">
-            <a class="dib pv2 ph1 ph2-ns hover-white white-90 no-underline" href="{{ .URL }}" title="{{ lang.Translate "pageTitle" . }}">
-              {{ .Name }}
-            </a>
-          </li>
-          {{ end }}
-        </ul>
-      {{ end }}
-      <div class="dn db-l">
-        {{ partials.IncludeCached "social/follow.html" . }}
-      </div>
-    </div>
-  </div>
+<nav class="center relative mw9 ph3 ph5-ns pv3" role="navigation" aria-label="{{ lang.Translate "mainNav" }}">
+	<div class="center flex-l items-center justify-between">
+		<a href="{{ .Site.Home.RelPermalink }}" class="dib f3 fw2 hover-white no-underline white-90">
+			{{ with .Site.Params.site_logo }}
+				<img src="{{ urls.RelURL . }}" class="db h-auto mw4 mw5-l w-auto" width="160" height="160" alt="{{ $.Site.Title }}" decoding="async">
+			{{ else }}
+				{{ .Site.Title }}
+			{{ end }}
+		</a>
+		<div class="flex-l items-center">
+			{{ partials.Include "i18nlist.html" . }}
+			{{ if .Site.Menus.main }}
+				<ul class="{{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "ml3 pr0" "mr3 pl0" }}">
+					{{ range .Site.Menus.main }}
+						<li class="dib list f4-ns f5 fw4 {{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "pl3" "pr3" }}">
+							<a class="dib ph1 ph2-ns pv2 hover-white no-underline white-90" href="{{ .URL }}" title="{{ lang.Translate "pageTitle" . }}">
+								{{ .Name }}
+							</a>
+						</li>
+					{{ end }}
+				</ul>
+			{{ end }}
+			<div class="db-l dn">
+				{{ partials.IncludeCached "social/follow.html" . }}
+			</div>
+		</div>
+	</div>
 </nav>
